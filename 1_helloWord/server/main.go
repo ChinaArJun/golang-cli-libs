@@ -17,18 +17,22 @@
  */
 
 //go:generate protoc -I ../../Libraries/src/google.golang.org/grpc/examples/helloworld --go_out=plugins=grpc:../../Libraries/src/google.golang.org/grpc/examples/helloworld ../../Libraries/src/google.golang.org/grpc/examples/helloworld/helloworld.proto
+//go:generate protoc -I ./examples/helloworld/helloworld \
+//--go_out=plugins=grpc:./examples/helloworld/helloworld \
+//./examples/helloworld/helloworld/helloworld.proto
+
 
 package main
 
 import (
 	"context"
 	"fmt"
+	"gRPC/Libraries/src/google.golang.org/grpc"
 	"log"
 	"net"
 	"os"
 
-	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
+	pb "../../examples/helloworld/helloworld"
 )
 
 // server is used to implement helloworld.GreeterServer.
