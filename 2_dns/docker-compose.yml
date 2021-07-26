@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+
+  dns:
+    build:
+      context: ../
+      dockerfile: ./benburkert/Dockerfile
+    command: go run main.go
+    working_dir: /go/src/app
+    networks:
+      grpc_net:
+
+  test:
+    build:
+      context: ../
+      dockerfile: ./dns_lookup/Dockerfile
+    command: go run main.go
+    working_dir: /go/src/app
+    networks:
+      grpc_net:
+    depends_on:
+      - dns
+
+networks:
+  grpc_net:
+    ipam:
+      driver: default

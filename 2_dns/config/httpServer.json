@@ -1,0 +1,11 @@
+{
+  "port": 8080,
+  "servicePrefix": "service.discover.",
+  "register": [
+    {
+      "schema": "http",
+      "endpoint": "service",
+      "name": "http.service.discover"
+    }
+  ]
+}

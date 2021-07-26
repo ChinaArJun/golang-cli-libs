@@ -1,0 +1,6 @@
+{
+  "hostList": "172.18.0.1:2379,172.18.0.2:2379,172.18.0.3:2379",
+  "keyPrefix": "dnsServerKey",
+  "dialTimeOut": 500000,
+  "requestTimeOut": 1000000
+}

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  go-micro-server:
+    build:
+      context: .
+      dockerfile: ./go-micro/server/Dockerfile
+    command: go run main.go
+    working_dir: /go/src/app
+    environment:
+      PORT: 50051
+    networks:
+      go_micro_network:
+
+  go-micro-client:
+    build:
+      context: .
+      dockerfile: ./go-micro/client/Dockerfile
+    command: go run main.go
+    working_dir: /go/src/app
+    environment:
+      PORT: 50051
+    networks:
+      go_micro_network:
+    depends_on:
+      - go-micro-server
+
+networks:
+  go_micro_network:

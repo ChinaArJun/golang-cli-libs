@@ -1,0 +1,1 @@
+nslookup -q=srv http.service.discover.tld. 192.168.17.207 -port=53535

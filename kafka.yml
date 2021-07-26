@@ -1,0 +1,30 @@
+version: '3'
+services:
+  zookeeper:
+    build: ./kafka
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      kafka_net:
+        ipv4_address: ${zookeeper_ip}
+
+  kafka:
+    build: ./kafka
+    ports:
+      - "9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.17.207
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      kafka_net:
+        ipv4_address: ${kafka_ip}
+
+networks:
+  kafka_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${subnet_ip_mask}

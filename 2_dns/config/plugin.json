@@ -1,0 +1,22 @@
+[
+  {
+    "type": "pluginOnLoad",
+    "path": "./plugin/onLoad/setEnvironmentVarByJson.so",
+    "conf": ["./config/setenv.json"]
+  },
+  {
+    "type": "pluginData",
+    "path": "./plugin/dataPlugin/etcd/etcd.so",
+    "conf": ["./config/etcd.json"]
+  },
+  {
+    "type": "pluginDns",
+    "path": "./plugin/serviceDiscover/dns/benBurkertDns.so",
+    "conf": ["./config/benBurkertDns.json"]
+  },
+  {
+    "type": "pluginHttpServer",
+    "path": "./plugin/serviceDiscover/httpServer/benBurkertDnsCompatibleHttpServer.so",
+    "conf": ["./config/httpServer.json"]
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "type": "pluginOnLoad",
+    "path": "/go/src/app/2_dns/plugin/onLoad/setEnvironmentVarByJson.so",
+    "conf": ["/go/src/app/2_dns/config/setenv.json"]
+  },
+  {
+    "type": "pluginData",
+    "path": "/go/src/app/2_dns/plugin/dataPlugin/etcd/etcd.so",
+    "conf": ["/go/src/app/2_dns/config/etcd.json"]
+  },
+  {
+    "type": "pluginDns",
+    "path": "/go/src/app/2_dns/plugin/serviceDiscover/dns/benBurkertDns.so",
+    "conf": ["/go/src/app/2_dns/config/benBurkertDns.json"]
+  },
+  {
+    "type": "pluginHttpServer",
+    "path": "/go/src/app/2_dns/plugin/serviceDiscover/httpServer/benBurkertDnsCompatibleHttpServer.so",
+    "conf": ["/go/src/app/2_dns/config/httpServer.json"]
+  }
+]

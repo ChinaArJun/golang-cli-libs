@@ -1,0 +1,17 @@
+# para definir DB_HOST use 'export DB_HOST="valor"'
+version: '3'
+
+services:
+
+  golang-static-server:
+    build:
+      context: .
+      dockerfile: ./staticServer/Dockerfile
+    command: go run main.go
+    volumes:
+    - /docker/static:/docker/static
+    working_dir: /go/src/app
+    ports:
+    - 3000:3000
+    environment:
+      DB_HOST: ${DB_HOST}

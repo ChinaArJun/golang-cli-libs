@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+
+  golang-grpc-server:
+    container_name: golang-grpc-server
+    build:
+      context: .
+      dockerfile: ./helloWord/server/Dockerfile
+    command: go run main.go
+    volumes:
+    - ../:/go/src/app
+    working_dir: /go/src/app
+    environment:
+      PORT: 50051
+    networks:
+      grpc_net:
+        ipv4_address: ${server_ip}
+
+  golang-grpc-client:
+    build:
+      context: .
+      dockerfile: ./helloWord/client/Dockerfile
+    command: go run main.go
+    volumes:
+    - ../:/go/src/app
+    working_dir: /go/src/app
+    environment:
+      PORT: 50051
+    networks:
+      grpc_net:
+    depends_on:
+      - golang-grpc-server
+
+networks:
+  grpc_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${subnet_ip_mask}

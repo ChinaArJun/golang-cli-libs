@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  golang-avahi-register:
+    build:
+      context: .
+      dockerfile: ./3_avahi_register/Dockerfile
+    command: go run main.go
+    volumes:
+      - ../:/go/src/app
+    working_dir: /go/src/app
+    networks:
+      grpc_net:
+
+  golang-avahi-discover:
+    build:
+      context: .
+      dockerfile: ./4_avahi_discover/Dockerfile
+    command: go run main.go
+    working_dir: /go/src/app
+    networks:
+      grpc_net:
+    depends_on:
+      - golang-avahi-register
+
+networks:
+  grpc_net:
